@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moovbe/add_driver.dart';
 import 'package:moovbe/card/list_card.dart';
-import 'package:moovbe/seat1x3.dart';
-import 'package:moovbe/seat2x2.dart';
+import 'package:moovbe/ui/add_driver.dart';
+import 'package:moovbe/ui/seat1x3.dart';
+import 'package:moovbe/ui/seat2x2.dart';
 
 class DriverListScreen extends StatefulWidget {
   const DriverListScreen({Key? key}) : super(key: key);
@@ -93,26 +93,6 @@ class DriverListScreenState extends State<DriverListScreen> {
               ),
             ],
           ),
-          /* TextButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                (Set<MaterialState> states) {
-                  if (states.contains(MaterialState.pressed)) {
-                    return Colors.white;
-                  }
-                  return Colors.blue; // Use the component's default.
-                },
-              ),
-            ),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const BusListScreen()));
-            },
-            child: const Text("Add Driver",
-                style: TextStyle(color: Colors.white, letterSpacing: 0.5)),
-          ),*/
         ],
       ),
     );

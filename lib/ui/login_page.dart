@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'bus_list.dart';
+import 'package:moovbe/ui/bus_list.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

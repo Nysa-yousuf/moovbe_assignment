@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moovbe/card/list_card.dart';
-import 'package:moovbe/driver_list.dart';
-import 'package:moovbe/seat1x3.dart';
-import 'package:moovbe/seat2x2.dart';
+import 'package:moovbe/ui/driver_list.dart';
+import 'package:moovbe/ui/seat1x3.dart';
+import 'package:moovbe/ui/seat2x2.dart';
 
 class BusListScreen extends StatefulWidget {
   const BusListScreen({Key? key}) : super(key: key);

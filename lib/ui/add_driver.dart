@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'bus_list.dart';
+import 'package:moovbe/api/dio_client.dart';
+import 'package:moovbe/model/driver_list.dart';
 
 class AddDriverPage extends StatefulWidget {
   const AddDriverPage({super.key});
@@ -10,8 +10,68 @@ class AddDriverPage extends StatefulWidget {
 }
 
 class AddDriverPageState extends State<AddDriverPage> {
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
+  late final DioClient dio;
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController licenceController = TextEditingController();
+
+  Future<bool> insertItem({required DriverList details}) async {
+    // loading = true;
+    return dio.postItem(details).then(
+      (value) async {
+        if (value['success'] == true) {
+          print("success");
+
+          // success = true;
+          // loading = false;
+
+          return true;
+        } else {
+          if (value
+              .toString()
+              .contains("An internal error occurred during your request")) {
+            print("An internal error occurred during your request");
+            // errorStore.errorMessage =
+            //     "An internal error occurred during your request";
+            // success = false;
+            // loading = false;
+            return false;
+          } else if (value.toString().contains("Duplicate item found")) {
+            print("Duplicate item found");
+            // success = false;
+            // loading = false;
+            // errorStore.errorMessage = "Duplicate item found";
+            return false;
+          } else {
+            print("not success");
+            // errorStore.errorMessage =
+            //     "An unKnown Error Occurred.Please try again";
+            // success = false;
+            // loading = false;
+            return false;
+          }
+        }
+      },
+    ).catchError(
+      (e) {
+        print(e);
+        // success = false;
+        // loading = false;
+        // if (e.runtimeType == DioError) {
+        //   // errorStore.errorMessage = DioErrorUtil.handleError(e);
+        // } else {
+        //   print(e.runtimeType);
+        // }
+        return false;
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    dio = DioClient();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,17 +99,12 @@ class AddDriverPageState extends State<AddDriverPage> {
                   Container(
                     margin: const EdgeInsets.all(10),
                     child: TextFormField(
-                      controller: email,
+                      controller: nameController,
                       style: const TextStyle(
                         fontSize: 24,
                         color: Colors.black,
                         fontWeight: FontWeight.w600,
                       ),
-                      onChanged: (value) {
-                        setState(() {
-                          email.text = value.toString();
-                        });
-                      },
                       decoration: InputDecoration(
                         focusColor: Colors.white,
                         //add prefix icon
@@ -93,17 +148,12 @@ class AddDriverPageState extends State<AddDriverPage> {
                   Container(
                     margin: const EdgeInsets.all(10),
                     child: TextFormField(
-                      controller: password,
+                      controller: licenceController,
                       style: const TextStyle(
                         fontSize: 24,
                         color: Colors.black,
                         fontWeight: FontWeight.w600,
                       ),
-                      onChanged: (value) {
-                        setState(() {
-                          email.text = value.toString();
-                        });
-                      },
                       decoration: InputDecoration(
                         focusColor: Colors.white,
 
@@ -175,10 +225,17 @@ class AddDriverPageState extends State<AddDriverPage> {
 
                             ),
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const BusListScreen()));
+                          DriverList driverList = DriverList(
+                              id: null,
+                              name: nameController.text,
+                              licenseNo: licenceController.text);
+                          insertItem(details: driverList).then((value) {
+                            if (value == true) {
+                              nameController.clear();
+                              licenceController.clear();
+                            }
+                          });
+                          print(nameController.text);
                         },
                         child: const Text("Save",
                             style: TextStyle(

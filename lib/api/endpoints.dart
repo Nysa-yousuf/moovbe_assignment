@@ -13,4 +13,5 @@ class Endpoints {
   static const String isTenantAvailable =
       "/api/services/app/Account/IsTenantAvailable";
   static const String getDriverList = "DriverApi/";
+  static const String postDriverList = "DriverApi/";
 }

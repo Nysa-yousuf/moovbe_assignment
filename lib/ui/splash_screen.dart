@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moovbe/login_page.dart';
+import 'package:moovbe/ui/login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
