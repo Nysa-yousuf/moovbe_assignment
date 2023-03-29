@@ -2,61 +2,37 @@ import 'package:flutter/material.dart';
 
 import 'bus_list.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class AddDriverPage extends StatefulWidget {
+  const AddDriverPage({super.key});
 
   @override
-  LoginPageState createState() => LoginPageState();
+  AddDriverPageState createState() => AddDriverPageState();
 }
 
-class LoginPageState extends State<LoginPage> {
+class AddDriverPageState extends State<AddDriverPage> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(120),
+        child: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.black,
+          title: const Padding(
+            padding: EdgeInsets.only(top: 40),
+            child: Text("Driver List"),
+          ),
+        ),
+      ),
       resizeToAvoidBottomInset: false,
       body: Column(children: [
         Stack(
           children: [
-            Column(
-              children: const [
-                Image(image: AssetImage("images/box.png")),
-              ],
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 8),
-              child: Image(
-                image: AssetImage("images/triangle.png"),
-              ),
-            ),
             Padding(
-              padding: const EdgeInsets.only(left: 4, top: 110),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    "Welcome",
-                    style: TextStyle(
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                        fontFamily: 'Axiforma',
-                        fontSize: 45,
-                        letterSpacing: 0),
-                  ),
-                  Text(
-                    "Manage your bus and drivers",
-                    style: TextStyle(
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                        fontFamily: 'Axiforma',
-                        fontSize: 16,
-                        letterSpacing: 0),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 24, top: 300, right: 24),
+              padding: const EdgeInsets.only(left: 24, top: 30, right: 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -77,10 +53,6 @@ class LoginPageState extends State<LoginPage> {
                       decoration: InputDecoration(
                         focusColor: Colors.white,
                         //add prefix icon
-                        prefixIcon: Icon(
-                          Icons.email,
-                          color: Colors.grey.shade700,
-                        ),
 
                         // errorText: "Error",
 
@@ -96,7 +68,7 @@ class LoginPageState extends State<LoginPage> {
                         fillColor: Colors.grey.shade200,
                         filled: true,
 
-                        hintText: " Enter Email ",
+                        hintText: "Enter Name",
 
                         //make hint text
                         hintStyle: TextStyle(
@@ -107,7 +79,7 @@ class LoginPageState extends State<LoginPage> {
                         ),
 
                         //create lable
-                        labelText: 'Enter Email',
+                        labelText: 'Enter Name',
                         //lable style
                         labelStyle: TextStyle(
                           color: Colors.grey.shade700,
@@ -134,11 +106,6 @@ class LoginPageState extends State<LoginPage> {
                       },
                       decoration: InputDecoration(
                         focusColor: Colors.white,
-                        //add prefix icon
-                        prefixIcon: Icon(
-                          Icons.password,
-                          color: Colors.grey.shade700,
-                        ),
 
                         // errorText: "Error",
 
@@ -154,7 +121,7 @@ class LoginPageState extends State<LoginPage> {
                         fillColor: Colors.grey.shade200,
                         filled: true,
 
-                        hintText: " Enter password",
+                        hintText: " Enter License Number",
 
                         //make hint text
                         hintStyle: TextStyle(
@@ -165,7 +132,7 @@ class LoginPageState extends State<LoginPage> {
                         ),
 
                         //create lable
-                        labelText: 'Enter password ',
+                        labelText: ' Enter License Number',
                         //lable style
                         labelStyle: TextStyle(
                           color: Colors.grey.shade700,
@@ -177,10 +144,9 @@ class LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(left: 24, top: 150, right: 24),
+                    padding: const EdgeInsets.only(left: 8, right: 8),
                     child: Container(
-                      margin: const EdgeInsets.only(top: 100),
+                      margin: const EdgeInsets.only(top: 50),
                       width: MediaQuery.of(context).size.width, height: 60,
 
                       decoration: const BoxDecoration(
@@ -214,9 +180,11 @@ class LoginPageState extends State<LoginPage> {
                               MaterialPageRoute(
                                   builder: (context) => const BusListScreen()));
                         },
-                        child: const Text("Login",
+                        child: const Text("Save",
                             style: TextStyle(
-                                color: Colors.white, letterSpacing: 0.5)),
+                                color: Colors.white,
+                                letterSpacing: 0.5,
+                                fontSize: 24)),
                       ),
                     ),
                   ),
