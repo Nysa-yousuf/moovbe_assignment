@@ -10,67 +10,29 @@ class AddDriverPage extends StatefulWidget {
 }
 
 class AddDriverPageState extends State<AddDriverPage> {
-  late final DioClient dio;
+  final DioClient dio = DioClient();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController licenceController = TextEditingController();
 
-  Future<bool> insertItem({required DriverList details}) async {
-    // loading = true;
+  Future<dynamic> insertItem({required DriverListResult details}) async {
     return dio.postItem(details).then(
       (value) async {
-        if (value['success'] == true) {
+        if (value.data['status'] == true) {
           print("success");
-
-          // success = true;
-          // loading = false;
-
+          nameController.clear();
+          licenceController.clear();
+          Navigator.pop(context);
           return true;
         } else {
-          if (value
-              .toString()
-              .contains("An internal error occurred during your request")) {
-            print("An internal error occurred during your request");
-            // errorStore.errorMessage =
-            //     "An internal error occurred during your request";
-            // success = false;
-            // loading = false;
-            return false;
-          } else if (value.toString().contains("Duplicate item found")) {
-            print("Duplicate item found");
-            // success = false;
-            // loading = false;
-            // errorStore.errorMessage = "Duplicate item found";
-            return false;
-          } else {
-            print("not success");
-            // errorStore.errorMessage =
-            //     "An unKnown Error Occurred.Please try again";
-            // success = false;
-            // loading = false;
-            return false;
-          }
+          return false;
         }
       },
     ).catchError(
       (e) {
-        print(e);
-        // success = false;
-        // loading = false;
-        // if (e.runtimeType == DioError) {
-        //   // errorStore.errorMessage = DioErrorUtil.handleError(e);
-        // } else {
-        //   print(e.runtimeType);
-        // }
         return false;
       },
     );
-  }
-
-  @override
-  void initState() {
-    dio = DioClient();
-    super.initState();
   }
 
   @override
@@ -211,37 +173,22 @@ class AddDriverPageState extends State<AddDriverPage> {
                       ),
                       // margin: EdgeInsets.only(bottom: 2),
                       child: TextButton(
-                        style: const ButtonStyle(
-                            // backgroundColor:
-                            // MaterialStateProperty.resolveWith<Color>(
-                            //   (Set<MaterialState> states) {
-                            //   if (states.contains(MaterialState.pressed)) {
-                            //     return themeData.splashColor;
-                            //   }
-                            //   return themeData
-                            //       .primaryColor; // Use the component's default.
-                            // },
-                            // ),
-
-                            ),
                         onPressed: () {
-                          DriverList driverList = DriverList(
+                          DriverListResult driverList = DriverListResult(
                               id: null,
                               name: nameController.text,
                               licenseNo: licenceController.text);
-                          insertItem(details: driverList).then((value) {
-                            if (value == true) {
-                              nameController.clear();
-                              licenceController.clear();
-                            }
-                          });
+                          insertItem(details: driverList);
                           print(nameController.text);
                         },
-                        child: const Text("Save",
-                            style: TextStyle(
-                                color: Colors.white,
-                                letterSpacing: 0.5,
-                                fontSize: 24)),
+                        child: const Text(
+                          "Save",
+                          style: TextStyle(
+                            color: Colors.white,
+                            letterSpacing: 0.5,
+                            fontSize: 24,
+                          ),
+                        ),
                       ),
                     ),
                   ),

@@ -1,20 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:moovbe/api/dio_client.dart';
 import 'package:moovbe/card/list_card.dart';
+import 'package:moovbe/model/driver_list.dart';
 import 'package:moovbe/ui/add_driver.dart';
-import 'package:moovbe/ui/seat1x3.dart';
-import 'package:moovbe/ui/seat2x2.dart';
 
 class DriverListScreen extends StatefulWidget {
-  const DriverListScreen({Key? key}) : super(key: key);
+  // final DriverListResult item;
+
+  const DriverListScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   DriverListScreenState createState() => DriverListScreenState();
 }
 
 class DriverListScreenState extends State<DriverListScreen> {
+  DioClient dio = DioClient();
+  List<DriverListResult> persons = [];
+
   @override
   Future<void> didChangeDependencies() async {
     super.didChangeDependencies();
+  }
+
+  @override
+  void initState() {
+    itemDropdownList();
+    super.initState();
+  }
+
+  Future itemDropdownList() async {
+    dio.getDriver().then((value) {
+      DriverListModel? salesPersonDetails =
+          DriverListModel.fromJson(value.data);
+
+      if (salesPersonDetails.status == true) {
+        persons = [];
+        for (int i = 0; i < salesPersonDetails.driverList!.length; i++) {
+          persons.add(salesPersonDetails.driverList![i]);
+        }
+        setState(() {});
+      } else {}
+    }).catchError(
+      (e) {
+        print(e.runtimeType);
+      },
+    );
+  }
+
+  Future deleteList({required int id}) async {
+    dio.deleteDriver(id).then((value) {
+      itemDropdownList();
+    }).catchError(
+      (e) {
+        print(e.runtimeType);
+      },
+    );
   }
 
   @override
@@ -39,11 +81,12 @@ class DriverListScreenState extends State<DriverListScreen> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   primary: true,
-                  itemCount: 10,
+                  itemCount: persons.length,
                   itemBuilder: (BuildContext context, int index) {
                     return DriverList(
                       onClicked: () {
-                        index == 0 || index == 2
+                        deleteList(id: persons[index].id!);
+                        /* index == 0 || index == 2
                             ? Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -51,8 +94,9 @@ class DriverListScreenState extends State<DriverListScreen> {
                             : Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const BusSeats()));
+                                    builder: (context) => const BusSeats()));*/
                       },
+                      data: persons[index],
                     );
                   },
                 ),

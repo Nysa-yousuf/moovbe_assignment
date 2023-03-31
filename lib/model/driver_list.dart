@@ -1,15 +1,15 @@
 class DriverListModel {
   bool? status;
-  List<DriverList>? driverList;
+  List<DriverListResult>? driverList;
 
   DriverListModel({this.status, this.driverList});
 
   DriverListModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     if (json['driver_list'] != null) {
-      driverList = <DriverList>[];
+      driverList = <DriverListResult>[];
       json['driver_list'].forEach((v) {
-        driverList!.add(DriverList.fromJson(v));
+        driverList!.add(DriverListResult.fromJson(v));
       });
     }
   }
@@ -24,15 +24,15 @@ class DriverListModel {
   }
 }
 
-class DriverList {
+class DriverListResult {
   int? id;
   String? name;
   String? mobile;
   String? licenseNo;
 
-  DriverList({this.id, this.name, this.mobile, this.licenseNo});
+  DriverListResult({this.id, this.name, this.mobile, this.licenseNo});
 
-  DriverList.fromJson(Map<String, dynamic> json) {
+  DriverListResult.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     mobile = json['mobile'];

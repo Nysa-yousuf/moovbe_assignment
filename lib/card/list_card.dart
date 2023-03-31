@@ -91,6 +91,7 @@ class RecommendItem extends StatelessWidget {
 }
 */
 import 'package:flutter/material.dart';
+import 'package:moovbe/model/driver_list.dart';
 
 class BusList extends StatelessWidget {
   final VoidCallback onClicked;
@@ -208,8 +209,9 @@ class BusList extends StatelessWidget {
 
 class DriverList extends StatelessWidget {
   final VoidCallback onClicked;
+  final DriverListResult data;
 
-  const DriverList({super.key, required this.onClicked});
+  const DriverList({super.key, required this.onClicked, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -264,7 +266,7 @@ class DriverList extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: Image(
+                      child: const Image(
                         alignment: Alignment.bottomRight,
                         image: AssetImage("images/driver_list.png"),
                         fit: BoxFit.cover,
@@ -286,17 +288,17 @@ class DriverList extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 6, top: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
-                            "KSRTC",
-                            style: TextStyle(
+                            data.name!,
+                            style: const TextStyle(
                                 fontFamily: 'Axiforma',
                                 fontSize: 14,
                                 letterSpacing: 0),
                           ),
                           Text(
-                            "Swift Scania P-series",
-                            style: TextStyle(
+                            data.licenseNo!,
+                            style: const TextStyle(
                                 fontFamily: 'Axiforma',
                                 fontSize: 12,
                                 letterSpacing: 0),

@@ -5,7 +5,9 @@ import 'package:moovbe/ui/seat1x3.dart';
 import 'package:moovbe/ui/seat2x2.dart';
 
 class BusListScreen extends StatefulWidget {
-  const BusListScreen({Key? key}) : super(key: key);
+  const BusListScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   BusListScreenState createState() => BusListScreenState();
@@ -19,6 +21,7 @@ class BusListScreenState extends State<BusListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // DriverListResult list;
     return Scaffold(
       body: Stack(
         children: [
@@ -110,8 +113,9 @@ class BusListScreenState extends State<BusListScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const DriverListScreen()));
+                                  builder: (context) => DriverListScreen(
+                                      // item: widget.list,
+                                      )));
                         },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
