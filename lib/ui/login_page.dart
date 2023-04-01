@@ -6,8 +6,6 @@ import 'package:moovbe/ui/bus_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
-  // final DriverListResult listResult;
-
   const LoginPage({
     super.key,
   });
@@ -30,6 +28,7 @@ class LoginPageState extends State<LoginPage> {
     final SharedPreferences sharedPreference =
         await SharedPreferences.getInstance();
     _sharedPreferenceHelper = SharedPreferenceHelper(sharedPreference);
+
     super.didChangeDependencies();
   }
 
@@ -69,7 +68,7 @@ class LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                             color: Color.fromRGBO(255, 255, 255, 1),
                             fontFamily: 'Axiforma',
-                            fontSize: 45,
+                            fontSize: 44,
                             letterSpacing: 0),
                       ),
                       SizedBox(height: 8),
@@ -78,7 +77,7 @@ class LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                             color: Color.fromRGBO(255, 255, 255, 1),
                             fontFamily: 'Axiforma',
-                            fontSize: 16,
+                            fontSize: 15,
                             letterSpacing: 0),
                       ),
                     ],
@@ -91,13 +90,15 @@ class LoginPageState extends State<LoginPage> {
             child: Form(
               key: _formKey,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.height * .03),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: MediaQuery.of(context).size.height * .07),
                     Container(
-                      margin: const EdgeInsets.all(10),
+                      margin: EdgeInsets.all(
+                          MediaQuery.of(context).size.height * .01),
                       child: TextFormField(
                         controller: email,
                         style: const TextStyle(
@@ -111,43 +112,38 @@ class LoginPageState extends State<LoginPage> {
                           return null;
                         },
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 0, vertical: 15),
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical:
+                                  MediaQuery.of(context).size.width * .05),
                           focusColor: Colors.white,
-                          //add prefix icon
                           prefixIcon: Icon(
                             Icons.email,
                             color: Colors.grey.shade700,
+                            size: 18,
                           ),
-
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           ),
-
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                                color: Colors.blue, width: 1.0),
-                            borderRadius: BorderRadius.circular(10.0),
+                              color: Colors.blue,
+                            ),
+                            borderRadius: BorderRadius.circular(
+                                MediaQuery.of(context).size.height * .01),
                           ),
                           fillColor: Colors.grey.shade200,
                           filled: true,
-
                           hintText: " Enter Email ",
-
-                          //make hint text
                           hintStyle: TextStyle(
                             color: Colors.grey.shade700,
-                            fontSize: 16,
+                            fontSize: 12,
                             fontFamily: "Axiforma",
                             fontWeight: FontWeight.w400,
                           ),
-
-                          //create lable
                           labelText: 'Enter Email',
-                          //lable style
                           labelStyle: TextStyle(
                             color: Colors.grey.shade700,
-                            fontSize: 16,
+                            fontSize: 12,
                             fontFamily: "Axiforma",
                             fontWeight: FontWeight.w400,
                           ),
@@ -155,22 +151,17 @@ class LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.all(10),
+                      margin: EdgeInsets.all(
+                          MediaQuery.of(context).size.height * .01),
                       child: TextFormField(
                         controller: password,
                         style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w600,
                         ),
-                        // validator: (value) {
-                        //   if (value == null || value.isEmpty) {
-                        //     return 'Please enter some text';
-                        //   }
-                        //   return null;
-                        // },
                         validator: (passCurrentValue) {
                           RegExp regex =
-                              RegExp(r'^(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
+                              RegExp(r'^(?=.*?[a-z])(?=.*?\d).{8,}$');
                           var passNonNullValue = passCurrentValue ?? "";
                           if (passNonNullValue.isEmpty) {
                             return ("Password is required");
@@ -182,25 +173,30 @@ class LoginPageState extends State<LoginPage> {
                           return null;
                         },
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 0, vertical: 15),
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical:
+                                  MediaQuery.of(context).size.width * .05),
                           focusColor: Colors.white,
                           //add prefix icon
                           prefixIcon: Icon(
                             Icons.password,
                             color: Colors.grey.shade700,
+                            size: 18,
                           ),
 
                           // errorText: "Error",
 
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(
+                                MediaQuery.of(context).size.height * .015),
                           ),
 
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                                color: Colors.blue, width: 1.0),
-                            borderRadius: BorderRadius.circular(15),
+                              color: Colors.blue,
+                            ),
+                            borderRadius: BorderRadius.circular(
+                                MediaQuery.of(context).size.height * .015),
                           ),
                           fillColor: Colors.grey.shade200,
                           filled: true,
@@ -210,53 +206,59 @@ class LoginPageState extends State<LoginPage> {
                           //make hint text
                           hintStyle: TextStyle(
                             color: Colors.grey.shade700,
-                            fontSize: 16,
+                            fontSize: 12,
                             fontFamily: "verdana_regular",
                             fontWeight: FontWeight.w400,
                           ),
 
-                          //create lable
                           labelText: 'Enter password ',
-                          //lable style
+
                           labelStyle: TextStyle(
                             color: Colors.grey.shade700,
-                            fontSize: 16,
+                            fontSize: 12,
                             fontFamily: "verdana_regular",
                             fontWeight: FontWeight.w400,
                           ),
                         ),
                       ),
                     ),
-                    const Expanded(child: SizedBox.shrink()),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width, height: 60,
-
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          //boxShadow: [
-                          // BoxShadow(
-                          color: Color.fromARGB(252, 252, 21, 59),
-                          //  blurRadius: 4,
-                          //  offset: const Offset(0, 3),
-                          // ),
-                          //],
-                        ),
-                        // margin: EdgeInsets.only(bottom: 2),
-                        child: TextButton(
-                          style: const ButtonStyle(),
-                          onPressed: () {
-                            loginUsers();
-                          },
-                          child: const Text("Login",
-                              style: TextStyle(
-                                  color: Colors.white, letterSpacing: 0.5)),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height * .05)
                   ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * .09,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: GestureDetector(
+                onTap: () {
+                  loginUsers();
+                },
+                child: Container(
+                  margin: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.height * .01,
+                      right: MediaQuery.of(context).size.height * .01,
+                      bottom: MediaQuery.of(context).size.height * .02),
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * .072,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(
+                      MediaQuery.of(context).size.height * 0.015,
+                    )),
+                    color: const Color.fromARGB(252, 252, 21, 59),
+                  ),
+                  child: const Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 0.5),
+                    ),
+                  ),
                 ),
               ),
             ),

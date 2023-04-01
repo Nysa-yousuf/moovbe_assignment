@@ -11,28 +11,41 @@ class _BusSeatsState extends State<BusSeats> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(120),
-        child: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.black,
-          title: const Padding(
-            padding: EdgeInsets.only(top: 40),
-            child: Text("KSRTC Swift Scania P-series"),
-          ),
-        ),
-      ),
       body: Column(
         children: [
+          Container(
+            height: MediaQuery.of(context).size.height * 0.16,
+            color: Colors.black,
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                BackButton(
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                const Expanded(
+                    child: Text(
+                  "KSRTC Swift Scania P-series",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ))
+              ],
+            ),
+          ),
           Center(
             child: Padding(
-              padding: const EdgeInsets.only(left: 10, right: 20),
+              padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.height * 0.010,
+                  right: MediaQuery.of(context).size.height * 0.012),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(
+                    MediaQuery.of(context).size.height * 0.01),
                 child: Container(
-                  margin: const EdgeInsets.only(top: 30),
-                  // width: 40,
-                  height: 150,
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * 0.010),
+                  height: MediaQuery.of(context).size.height * 0.2,
                   alignment: Alignment.center,
                   color: Colors.black,
                   child: Row(
@@ -42,7 +55,9 @@ class _BusSeatsState extends State<BusSeats> {
                       Expanded(
                         flex: 1,
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 8, top: 30),
+                          padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).size.width * 0.03,
+                              top: MediaQuery.of(context).size.height * 0.03),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: const [
@@ -67,16 +82,15 @@ class _BusSeatsState extends State<BusSeats> {
                           ),
                         ),
                       ),
-                      const Expanded(
+                      Expanded(
                         flex: 1,
                         child: Padding(
-                          padding: EdgeInsets.only(top: 20),
+                          padding: EdgeInsets.only(
+                              top: MediaQuery.of(context).size.height * 0.02),
                           child: Image(
-                            // alignment: Alignment.bottomRight,
-                            image: AssetImage("images/driver.png"),
+                            image: const AssetImage("images/driver.png"),
                             fit: BoxFit.contain,
-                            // width: 100,
-                            height: 150,
+                            height: MediaQuery.of(context).size.height * 0.2,
                           ),
                         ),
                       ),
@@ -87,11 +101,15 @@ class _BusSeatsState extends State<BusSeats> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 30, left: 50, right: 50),
+            padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height * 0.06,
+                left: MediaQuery.of(context).size.width * 0.15,
+                right: MediaQuery.of(context).size.width * 0.15),
             child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  borderRadius: BorderRadius.all(Radius.circular(
+                      MediaQuery.of(context).size.width * 0.015)),
                   border: Border.all(
                       color: Colors.grey.shade300,
                       // width: 1.0,
@@ -101,11 +119,12 @@ class _BusSeatsState extends State<BusSeats> {
                   color: Colors.grey.shade50,
                 ),
                 // height: 200,
-                child: const Padding(
-                  padding: EdgeInsets.all(10),
+                child: Padding(
+                  padding:
+                      EdgeInsets.all(MediaQuery.of(context).size.width * 0.03),
                   child: Image(
-                    image: AssetImage("images/seat1x3.png"),
-                    height: 400,
+                    image: const AssetImage("images/seat1x3.png"),
+                    height: MediaQuery.of(context).size.width * 0.99,
                   ),
                 )),
           )

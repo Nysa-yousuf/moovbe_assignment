@@ -102,11 +102,14 @@ class BusList extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-        height: 100,
-        margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+        height: MediaQuery.of(context).size.height * 0.15,
+        margin: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.width * 0.015,
+            horizontal: MediaQuery.of(context).size.height * 0.015),
         decoration: BoxDecoration(
           color: Colors.grey.shade50,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius:
+              BorderRadius.circular(MediaQuery.of(context).size.height * 0.01),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.shade200,
@@ -122,25 +125,29 @@ class BusList extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              height: 100,
-              width: 100,
+              height: MediaQuery.of(context).size.height * 0.2,
+              width: MediaQuery.of(context).size.width * 0.25,
               decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    bottomLeft: Radius.circular(20),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(
+                        MediaQuery.of(context).size.height * 0.020),
+                    bottomLeft: Radius.circular(
+                        MediaQuery.of(context).size.height * 0.020),
                   ),
                   color: Colors.grey.shade200),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Padding(
-                    padding: EdgeInsets.only(top: 8, bottom: 2),
+                    padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.015,
+                        bottom: MediaQuery.of(context).size.height * 0.012),
                     child: Image(
                       alignment: Alignment.bottomRight,
-                      image: AssetImage("images/buslist.png"),
+                      image: const AssetImage("images/buslist.png"),
                       fit: BoxFit.cover,
-                      width: 80,
-                      height: 50,
+                      width: MediaQuery.of(context).size.width * 0.2,
+                      height: MediaQuery.of(context).size.height * 0.05,
                     ),
                   ),
                   // ),
@@ -155,7 +162,9 @@ class BusList extends StatelessWidget {
                   Expanded(
                     flex: 3,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 6, top: 20),
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.02,
+                          top: MediaQuery.of(context).size.height * 0.03),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
@@ -163,7 +172,7 @@ class BusList extends StatelessWidget {
                             "KSRTC",
                             style: TextStyle(
                                 fontFamily: 'Axiforma',
-                                fontSize: 14,
+                                fontSize: 15,
                                 letterSpacing: 0),
                           ),
                           Text(
@@ -180,12 +189,14 @@ class BusList extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 8),
+                      padding: EdgeInsets.only(
+                          right: MediaQuery.of(context).size.height * 0.015),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Color.fromARGB(252, 252, 21, 59),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(
+                              MediaQuery.of(context).size.height * 0.010)),
+                          color: const Color.fromARGB(252, 252, 21, 59),
                         ),
                         child: TextButton(
                           style: const ButtonStyle(),
@@ -217,11 +228,14 @@ class DriverList extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-        height: 100,
-        margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+        height: MediaQuery.of(context).size.height * 0.12,
+        margin: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.width * 0.014,
+            horizontal: MediaQuery.of(context).size.height * 0.020),
         decoration: BoxDecoration(
           color: Colors.grey.shade50,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius:
+              BorderRadius.circular(MediaQuery.of(context).size.height * 0.02),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.shade200,
@@ -237,25 +251,30 @@ class DriverList extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              height: 100,
-              width: 100,
+              height: MediaQuery.of(context).size.height * 0.12,
+              width: MediaQuery.of(context).size.width * 0.25,
               decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    bottomLeft: Radius.circular(20),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(
+                        MediaQuery.of(context).size.height * 0.020),
+                    bottomLeft: Radius.circular(
+                        MediaQuery.of(context).size.height * 0.020),
                   ),
                   color: Colors.grey.shade200),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: 8, bottom: 2),
+                    padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.01,
+                        bottom: MediaQuery.of(context).size.height * 0.01),
                     child: Container(
-                      width: 60,
-                      height: 60,
+                      width: MediaQuery.of(context).size.width * 0.16,
+                      height: MediaQuery.of(context).size.height * 0.08,
                       decoration: BoxDecoration(
                         // color: bgColor,
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(
+                            MediaQuery.of(context).size.height * 0.1),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withOpacity(0.1),
@@ -285,15 +304,18 @@ class DriverList extends StatelessWidget {
                   Expanded(
                     flex: 3,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 6, top: 20),
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.03,
+                          top: MediaQuery.of(context).size.height * 0.03),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             data.name!,
+                            maxLines: 2,
                             style: const TextStyle(
                                 fontFamily: 'Axiforma',
-                                fontSize: 14,
+                                fontSize: 15,
                                 letterSpacing: 0),
                           ),
                           Text(
@@ -310,12 +332,14 @@ class DriverList extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 8),
+                      padding: EdgeInsets.only(
+                          right: MediaQuery.of(context).size.width * 0.015),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Color.fromARGB(252, 252, 21, 59),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(
+                              MediaQuery.of(context).size.height * 0.010)),
+                          color: const Color.fromARGB(252, 252, 21, 59),
                         ),
                         child: TextButton(
                           style: const ButtonStyle(),

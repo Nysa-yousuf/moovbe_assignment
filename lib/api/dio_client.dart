@@ -15,24 +15,13 @@ class DioClient {
     final Map<String, dynamic> data = {
       "username": userName,
       "password": password,
-      // "twoFactorVerificationCode": "null",
-      // "rememberClient": false,
-      // "twoFactorRememberClientToken": "null",
-      // "singleSignIn": true,
-      // "returnUrl": "null",
-      // "captchaResponse": "null"
     };
     try {
       final res = await _dio.post(
         baseUrl + Endpoints.authenticate,
         data: data,
-        // followRedirects: false,
-        // validateStatus: (status) {
-        //   return status! <= 500;
-        // },
       );
-      print("ffffffffffff");
-      print(res.data);
+
       return res;
     } catch (e) {
       rethrow;
@@ -45,13 +34,11 @@ class DioClient {
           await SharedPreferences.getInstance();
       _sharedPreferenceHelper = SharedPreferenceHelper(sharedPreference);
 
-      String? b = _sharedPreferenceHelper.ouId();
+      String? urlId = _sharedPreferenceHelper.ouId();
       String? token = _sharedPreferenceHelper.authToken();
 
-      print("tttttttttttttttttttttttttttttttttttttttttt");
-      print("$baseUrl${Endpoints.getDriverList}$b/");
       final res = await _dio.get(
-        "$baseUrl${Endpoints.getDriverList}$b/",
+        "$baseUrl${Endpoints.getDriverList}$urlId/",
         options: Options(
           headers: {"Authorization": "Bearer $token"},
           validateStatus: (status) {
@@ -61,7 +48,6 @@ class DioClient {
       );
       return res;
     } catch (e) {
-      print(e.toString());
       rethrow;
     }
   }
@@ -72,14 +58,14 @@ class DioClient {
           await SharedPreferences.getInstance();
       _sharedPreferenceHelper = SharedPreferenceHelper(sharedPreference);
 
-      String? b = _sharedPreferenceHelper.ouId();
+      String? urlId = _sharedPreferenceHelper.ouId();
       String? token = _sharedPreferenceHelper.authToken();
 
       print("tttttttttttttttttttttttttttttttttttttttttt");
-      print("$baseUrl${Endpoints.postDriverList}$b/");
+      print("$baseUrl${Endpoints.postDriverList}$urlId/");
       print(jsonEncode(data));
       final res = await _dio.post(
-        "$baseUrl${Endpoints.postDriverList}$b/",
+        "$baseUrl${Endpoints.postDriverList}$urlId/",
         data: jsonEncode(data),
         options: Options(
           headers: {"Authorization": "Bearer $token"},
@@ -104,13 +90,13 @@ class DioClient {
           await SharedPreferences.getInstance();
       _sharedPreferenceHelper = SharedPreferenceHelper(sharedPreference);
 
-      String? b = _sharedPreferenceHelper.ouId();
+      String? urlId = _sharedPreferenceHelper.ouId();
       String? token = _sharedPreferenceHelper.authToken();
 
       print("tttttttttttttttttttttttttttttttttttttttttt");
-      print("$baseUrl${Endpoints.deleteDriverList}$b/");
+      print("$baseUrl${Endpoints.deleteDriverList}$urlId/");
       final res = await _dio.delete(
-        "$baseUrl${Endpoints.deleteDriverList}$b/",
+        "$baseUrl${Endpoints.deleteDriverList}$urlId/",
         data: {"driver_id": id},
         options: Options(
           headers: {"Authorization": "Bearer $token"},

@@ -15,26 +15,20 @@ class BusListScreen extends StatefulWidget {
 
 class BusListScreenState extends State<BusListScreen> {
   @override
-  Future<void> didChangeDependencies() async {
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    // DriverListResult list;
     return Scaffold(
       body: Stack(
         children: [
           Column(
             children: [
               Container(
-                  // margin: EdgeInsets.only(top: 100),
                   color: Colors.black,
-                  height: 160,
+                  height: MediaQuery.of(context).size.height * 0.2,
                   width: double.infinity,
-                  child: const Padding(
-                    padding: EdgeInsets.all(60),
-                    child: Image(
+                  child: Padding(
+                    padding: EdgeInsets.all(
+                        MediaQuery.of(context).size.height * .06),
+                    child: const Image(
                       image: AssetImage("images/moovlogo.png"),
                     ),
                   )),
@@ -43,12 +37,14 @@ class BusListScreenState extends State<BusListScreen> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.all(20),
+                      padding: EdgeInsets.all(
+                          MediaQuery.of(context).size.height * .020),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(
+                            MediaQuery.of(context).size.height * .012),
                         child: Container(
-                          width: 40,
-                          height: 180,
+                          width: MediaQuery.of(context).size.width * 0.65,
+                          height: MediaQuery.of(context).size.height * 0.23,
                           alignment: Alignment.center,
                           color: const Color.fromARGB(252, 252, 21, 59),
                           child: Row(
@@ -57,8 +53,12 @@ class BusListScreenState extends State<BusListScreen> {
                               Expanded(
                                 flex: 1,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 6, top: 20),
+                                  padding: EdgeInsets.only(
+                                    left:
+                                        MediaQuery.of(context).size.width * .02,
+                                    top: MediaQuery.of(context).size.height *
+                                        0.028,
+                                  ),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -69,7 +69,7 @@ class BusListScreenState extends State<BusListScreen> {
                                             color: Color.fromRGBO(
                                                 255, 255, 255, 1),
                                             fontFamily: 'Axiforma',
-                                            fontSize: 22,
+                                            fontSize: 24,
                                             letterSpacing: 0),
                                       ),
                                       Text(
@@ -85,17 +85,21 @@ class BusListScreenState extends State<BusListScreen> {
                                   ),
                                 ),
                               ),
-                              const Expanded(
+                              Expanded(
                                 flex: 2,
                                 child: Padding(
-                                  padding:
-                                      EdgeInsets.only(top: 80, bottom: 20.0),
+                                  padding: EdgeInsets.only(
+                                      top: MediaQuery.of(context).size.height *
+                                          .09,
+                                      bottom:
+                                          MediaQuery.of(context).size.height *
+                                              .03),
                                   child: Image(
                                     alignment: Alignment.bottomRight,
-                                    image: AssetImage("images/bus.png"),
+                                    image: const AssetImage("images/bus.png"),
                                     fit: BoxFit.cover,
-                                    // width: 100,
-                                    height: 200,
+                                    height: MediaQuery.of(context).size.height *
+                                        .16,
                                   ),
                                 ),
                               ),
@@ -107,21 +111,23 @@ class BusListScreenState extends State<BusListScreen> {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 20),
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.height * .018,
+                          right: MediaQuery.of(context).size.height * .022),
                       child: GestureDetector(
                         onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => DriverListScreen(
-                                      // item: widget.list,
-                                      )));
+                                  builder: (context) =>
+                                      const DriverListScreen()));
                         },
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(
+                              MediaQuery.of(context).size.height * .012),
                           child: Container(
-                            width: 40,
-                            height: 180,
+                            width: MediaQuery.of(context).size.width * 0.65,
+                            height: MediaQuery.of(context).size.height * 0.23,
                             alignment: Alignment.center,
                             color: Colors.black,
                             child: Row(
@@ -130,8 +136,13 @@ class BusListScreenState extends State<BusListScreen> {
                                 Expanded(
                                   flex: 1,
                                   child: Padding(
-                                    padding:
-                                        const EdgeInsets.only(left: 8, top: 20),
+                                    padding: EdgeInsets.only(
+                                        left:
+                                            MediaQuery.of(context).size.width *
+                                                0.025,
+                                        top:
+                                            MediaQuery.of(context).size.height *
+                                                0.028),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -144,7 +155,7 @@ class BusListScreenState extends State<BusListScreen> {
                                                 color: Color.fromRGBO(
                                                     255, 255, 255, 1),
                                                 fontFamily: 'Axiforma',
-                                                fontSize: 22,
+                                                fontSize: 24,
                                                 letterSpacing: 0),
                                           ),
                                         ),
@@ -161,16 +172,20 @@ class BusListScreenState extends State<BusListScreen> {
                                     ),
                                   ),
                                 ),
-                                const Expanded(
+                                Expanded(
                                   flex: 1,
                                   child: Padding(
-                                    padding: EdgeInsets.only(top: 50),
+                                    padding: EdgeInsets.only(
+                                        top:
+                                            MediaQuery.of(context).size.height *
+                                                0.06),
                                     child: Image(
-                                      // alignment: Alignment.bottomRight,
-                                      image: AssetImage("images/driver.png"),
+                                      image:
+                                          const AssetImage("images/driver.png"),
                                       fit: BoxFit.cover,
-                                      // width: 100,
-                                      height: 180,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.2,
                                     ),
                                   ),
                                 ),
@@ -183,9 +198,10 @@ class BusListScreenState extends State<BusListScreen> {
                   ),
                 ],
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 20),
-                child: Align(
+              Padding(
+                padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.height * 0.02),
+                child: const Align(
                     alignment: Alignment.topLeft,
                     child: Text("21 Buses Found")),
               ),
